@@ -14,9 +14,12 @@ class MovieModel(db.Model):
 	director = db.Column(db.String(NAME_CHAR_LIMIT), nullable=False)
 	summary = db.Column(db.Text, nullable=True)
 	
-	_movieClips = db.relationship('MovieClipsModel', lazy='dynamic', back_populates='_movie')
-	_movieGenre = db.relationship('MovieGenreModel', lazy='dynamic', back_populates='_movie')
-	_actorsPlayed = db.relationship('ActorPlayedModel', lazy='dynamic', back_populates='_movie')
+	_movieClips = db.relationship('MovieClipsModel', lazy='dynamic', 
+                               cascade="all,delete", back_populates='_movie')
+	_movieGenre = db.relationship('MovieGenreModel', lazy='dynamic', 
+                               cascade="all,delete", back_populates='_movie')
+	_actorsPlayed = db.relationship('ActorPlayedModel', lazy='dynamic', 
+                                 cascade="all,delete", back_populates='_movie')
 	
 	def __init__(self, movie_id, title, year, original_title, running_time, director, summary):
      
