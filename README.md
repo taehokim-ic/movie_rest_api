@@ -86,6 +86,8 @@ $ rm code/movie.db
 | `jwt` | `string` | **Required**.  JWT**|
 | `movie_id`      | `integer` | **Required**. 영화 movie_id |
 
+#### movie_id로 영화 정보 수정하기
+
 ```http
   PUT /api/v1/movies/{movie_id}
 ```
@@ -104,6 +106,8 @@ $ rm code/movie.db
 | `movie_clips`      | `list[string]` | **Required**. 관련 영상 링크 |
 | `summary`      | `string` | **Required**. 시놉시스 |
 
+#### movie_id로 영화 삭제하기
+
 ```http
   DELETE /api/v1/movies/{movie_id}
 ```
@@ -112,6 +116,9 @@ $ rm code/movie.db
 | :-------- | :------- | :-------------------------------- |
 | `jwt` | `string` | **Required**.  JWT**|
 | `movie_id`      | `string` | **Required**. 영화 movie_id |
+
+
+#### 새 영화들 정보 추가
 
 ```http
   POST /api/v1/movies
