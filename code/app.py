@@ -5,15 +5,13 @@ from flask_jwt import JWT
 from security import authenticate, identity
 from resources.user import UserRegister
 from resources.movie import Movie, MovieList
-# from resources.actor import Actor, ActorList
+
 from db import db
+import config
 
 app = Flask(__name__, instance_relative_config=True)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///movie.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = '25f181ac4b42a0793e18e4d08cd38350068394cb1cbde849'
-# app.config.from_pyfile('config.py')
 # app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {'encoding': 'cp1252'}
+app.config.from_object(config)
 
 api = Api(app)
 
