@@ -48,18 +48,32 @@ $ rm code/movie.db
 
 ### API Reference
 
+#### User 가입
+```http
+  POST /api/v1/register
+```
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `username` | `string` | **Required**. 아이디 |
+| `password` | `string` | **Required**. 비밀번호 |
+
+#### JWT Authentication
+```http
+  POST /auth
+```
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `username` | `string` | **Required**. 아이디 |
+| `password` | `string` | **Required**. 비밀번호 |
+
 #### 모든 영화 정보 가져오기
 
 ```http
   GET /api/v1/movies
 ```
-
-
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. JWT token** |
-
-**Authentication 비활성화를 원하시면 ``` code/resources/movie.py ```에 ``` @jwt_required()```를 모두 주석처리해 주세요.
+| `jwt` | `string` | **Required**. JWT** |
 
 #### movie_id로 영화 정보 가져오기
 
@@ -69,13 +83,42 @@ $ rm code/movie.db
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. 영화 movie_id |
+| `jwt` | `string` | **Required**.  JWT**|
+| `movie_id`      | `integer` | **Required**. 영화 movie_id |
+
+```http
+  PUT /api/v1/movies/{movie_id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `jwt` | `string` | **Required**.  JWT**|
+| `movie_id`      | `integer` | **Required**. 영화 movie_id |
+| `title`      | `string` | **Required**. 제목 |
+| `year`      | `integer` | **Required**. 제작 년도 |
+| `original_title`      | `string` | **Required**. 원제 |
+| `genres`      | `list[string]` | **Required**. 장르 |
+| `running_time`      | `integer` | **Required**. 상영 시간 |
+| `director`      | `string` | **Required**. 감독 |
+| `cast`      | `list[string]` | **Required**. 출연진 |
+| `movie_clips`      | `list[string]` | **Required**. 관련 영상 링크 |
+| `summary`      | `string` | **Required**. 시놉시스 |
+
+```http
+  DELETE /api/v1/movies/{movie_id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `jwt` | `string` | **Required**.  JWT**|
+| `movie_id`      | `string` | **Required**. 영화 movie_id |
 
 ```http
   POST /api/v1/movies
-  
 ```
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `movies`      | `list[dict]` | **Required**. 영화 movie_id |
+| `jwt` | `string` | **Required**.  JWT**|
+| `movies`      | `list[dict]` | **Required**. 영화 정보들이 담긴 dict |
 
+**JWT Authentication 비활성화를 원하시면 ``` code/resources/movie.py ```에 ``` @jwt_required()```를 모두 주석처리해 주세요.
