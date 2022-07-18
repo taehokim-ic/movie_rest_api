@@ -1,4 +1,4 @@
-# 티켓플레이스 Movie API 🎥
+# Flask Movie API 🎥
 ### Introduction
 영화 제목, 원제, 제작 연도, 감독, 출연진, 장르, 상영 시간, 영화 관련 영상 링크, 시놉시스를 제공해주는 REST API.  
 
